@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project1.pdc;
+package project2.pdc.model;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -17,7 +17,7 @@ public class BattleHistoryWriter {
     private String filename;
     
     public BattleHistoryWriter(String battleName) {
-        this.filename = "src\\project1\\pdc\\matchHistory\\" + battleName + ".txt";
+        this.filename = "src\\project2\\pdc\\matchHistory\\" + battleName + ".txt";
     }
     
     // method to add the history of the match to a text file

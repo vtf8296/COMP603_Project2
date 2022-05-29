@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project1.pdc;
+package project2.pdc.model;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -70,7 +70,7 @@ public class ConsoleIO {
         String message = "\n" + winnerName + " wins with the same element and unique colours!";
         List<String> winningList = new ArrayList<String>();
         for(Colour colour : winningMap.get(winningElement)) {
-            winningList.add(colour.appendColourCode(colour.name()+"_"+winningElement.name()));
+//            winningList.add(colour.appendColourCode(colour.name()+"_"+winningElement.name()));
         }
         message = message + "\n" + winningList;
         printAndSave(message);
@@ -80,9 +80,9 @@ public class ConsoleIO {
     public void printBattleWinnerEveryElement(String winnerName, Colour fireColour, Colour iceColour, Colour waterColour) {
         String message = "\n" + winnerName + " wins with every element and unique colours!";
         List<String> winningList = new ArrayList<String>();
-        winningList.add(fireColour.appendColourCode(fireColour.name()+"_"+Element.FIRE.name()));
-        winningList.add(iceColour.appendColourCode(iceColour.name()+"_"+Element.ICE.name()));
-        winningList.add(waterColour.appendColourCode(waterColour.name()+"_"+Element.WATER.name()));
+//        winningList.add(fireColour.appendColourCode(fireColour.name()+"_"+Element.FIRE.name()));
+//        winningList.add(iceColour.appendColourCode(iceColour.name()+"_"+Element.ICE.name()));
+//        winningList.add(waterColour.appendColourCode(waterColour.name()+"_"+Element.WATER.name()));
         message = message + "\n" + winningList;
         printAndSave(message);
     }

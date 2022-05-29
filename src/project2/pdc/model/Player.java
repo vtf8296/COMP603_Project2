@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project1.pdc;
+package project2.pdc.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +14,20 @@ import java.util.List;
  */
 public class Player {
     public static final int HAND_SIZE = 5;
-    private String name;
-    private List<Card> hand;
-    private List<Card> winningCards;
+    private final String name;
+    private final List<Card> hand = new ArrayList<>();
+    private final List<Card> winningCards = new ArrayList<>();
     
     public Player(String name) {
         this.name = name;
-        populateHand();
-        this.winningCards = new ArrayList<Card>();
+        this.populateHand();
     }
     
-    // method to add 5 cards to the hand
-    private void populateHand() {
-        this.hand = new ArrayList<Card>();
+    // method to add 5 new cards to the hand
+    public void populateHand() {
+        this.hand.clear();
         for (int i = 0; i < HAND_SIZE; i++) {
-            pickupCard(Card.getRandomCard());
+            drawCard(Card.getRandomCard());
         }
     }
     
@@ -41,12 +40,12 @@ public class Player {
     }
     
     // method removes card from hand
-    public Card playCard(int index) {
+    public Card useCard(int index) {
         return this.hand.remove(index);
     }
     
     // method adds card to hand
-    public void pickupCard(Card card) {
+    public void drawCard(Card card) {
         this.hand.add(card);
     }
     
@@ -54,9 +53,13 @@ public class Player {
         return this.winningCards;
     }
     
-    // method adds the winning card to a winning card list
+    // method adds the winning card to the winning card list
     public void addWinningCard(Card winningCard) {
         this.winningCards.add(winningCard);
+    }
+    
+    public void resetWinningCards() {
+        this.winningCards.clear();
     }
     
     @Override

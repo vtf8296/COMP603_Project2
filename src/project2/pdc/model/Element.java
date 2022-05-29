@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project1.pdc;
+package project2.pdc.model;
 
 import java.util.Random;
 

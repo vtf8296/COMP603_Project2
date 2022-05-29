@@ -1,4 +1,2 @@
-/COMP603_Project2/build/
-/COMP603_Project2/dist/
-/build/
-/nbproject/private/
+build/
+nbproject/private/private.xml
