@@ -2,13 +2,18 @@ package Task09_3;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.stream.Collectors;
 import javax.swing.JFrame;
 
 public class View extends JFrame implements Observer {
 
     // BATTLE
+    private List<javax.swing.JButton> cardButtons;
+    
     private javax.swing.JPanel batlePanel;
     public javax.swing.JButton cardButton1;
     public javax.swing.JButton cardButton2;
@@ -245,8 +250,42 @@ public class View extends JFrame implements Observer {
         );
 
         pack();
+        
+        this.cardButtons = Arrays.asList(this.cardButton1, this.cardButton2, this.cardButton3, this.cardButton4, this.cardButton5);
     }// </editor-fold>                        
 
+    private void updateBattleView(List<Round> rounds) {
+        Round round = rounds.get(rounds.size() - 1);
+        for(int i = 0; i < Player.HAND_SIZE; i++) {
+            javax.swing.JButton cardButton = this.cardButtons.get(i);
+            Card card = round.getPlayer().getHand().get(i);
+            cardButton.setBackground(card.getColour().value);
+            cardButton.setText("<html>" +
+                    "<h4>" + card.getLevel() + "</h4>" +
+                    card.getColour() +
+                    "<br/>" +
+                    card.getElement() +
+                    "</html>");
+        }
+        
+        if(round.getWinner().isPresent()) {
+            if(round.getWinner().get() == round.getPlayer()) {
+                this.roundMessageLabel.setText("Player's " + round.getPlayerSelectedCard() + " beat Robot's " + round.getRobotSelectedCard());
+            } else {
+                this.roundMessageLabel.setText("Robot's " + round.getRobotSelectedCard() + " beat Player's " + round.getPlayerSelectedCard());
+            }
+        } else {
+            this.roundMessageLabel.setText("Player's " + round.getPlayerSelectedCard() + " tied with Robot's " + round.getRobotSelectedCard());
+        }
+        this.roundNumberLabel.setText("Round " +rounds.size());
+        
+        this.playerFireWinningCardsLabel.setText("FIRE: " + round.getPlayer().getWinningCards().stream().filter(card -> card.getElement().equals(Element.FIRE)).collect(Collectors.toList()));
+        this.playerWaterWinningCardsLabel.setText("WATER: " + round.getPlayer().getWinningCards().stream().filter(card -> card.getElement().equals(Element.WATER)).collect(Collectors.toList()));
+        this.playerIceWinningCardsLabel.setText("ICE: " + round.getPlayer().getWinningCards().stream().filter(card -> card.getElement().equals(Element.ICE)).collect(Collectors.toList()));
+        this.robotFireWinningCardsLabel.setText("FIRE: " + round.getRobot().getWinningCards().stream().filter(card -> card.getElement().equals(Element.FIRE)).collect(Collectors.toList()));
+        this.robotWaterWinningCardsLabel.setText("WATER: " + round.getRobot().getWinningCards().stream().filter(card -> card.getElement().equals(Element.WATER)).collect(Collectors.toList()));
+        this.robotIceWinningCardsLabel.setText("ICE: " + round.getRobot().getWinningCards().stream().filter(card -> card.getElement().equals(Element.ICE)).collect(Collectors.toList()));
+    }
     
     public void addActionListener(ActionListener listener) {
         this.cardButton1.addActionListener(listener);
@@ -261,11 +300,7 @@ public class View extends JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         Data data = (Data) arg;
-        if(this.cardButton1.getForeground().equals(Color.RED)) {
-            this.cardButton1.setForeground(Color.BLUE);
-        } else {
-            this.cardButton1.setForeground(Color.RED);
-        }
+        updateBattleView(data.rounds);
     }
 
 }

@@ -31,29 +31,13 @@ public class Model extends Observable {
      * @param password 
      */
     public void checkName(String username, String password) {
-        this.username = username; // Store username
-        /**
-         * Compare username and password with that inside database. 
-         * Go to checkName() of Database.java.
-         * 
-         * Note: You should define attributes of Data before you go to Database class.
-         */
-        this.data = this.db.checkName(username, password); 
+        this.username = username;
+        this.data = this.db.checkName(username, password);
+//        if (data.loginFlag) {
+//            this.newQuestion();
+//        }
         
-        /**
-         * After you finish Step 7.
-         * Generate a new question if data.loginFlag is true, otherwise do nothing.
-         */
-        if (data.loginFlag) {
-            this.newQuestion();
-        }
-        this.setChanged(); // Essential. To mark this observable instance has been modified.
-        /**
-         * Pass data to Observers. Here, the observer is view.
-         * notifyObservers() would invoke update() of View automatically.
-         * 
-         * Go to update() of View.java for the next step.
-         */
+        this.setChanged();
         this.notifyObservers(this.data); 
     }
     
@@ -93,6 +77,12 @@ public class Model extends Observable {
          */
         this.db.quitGame(this.data.currentScore, this.username); 
         this.data.quitFlag = true; // Mark quitFlag as false.
+        this.setChanged();
+        this.notifyObservers(this.data);
+    }
+    
+    public void playRound(int index) {
+        this.data.rounds.get(this.data.rounds.size() - 1).play(index);
         this.setChanged();
         this.notifyObservers(this.data);
     }

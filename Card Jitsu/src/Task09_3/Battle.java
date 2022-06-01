@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package project2.pdc;
+package Task09_3;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class Battle {
     public void play() {
         Optional<Player> roundWinner = Optional.empty();
         do {
-            Round round = new Round(this.consoleIo, this.player1, this.player2);
+            Round round = new Round(this.player1);
             this.rounds.add(round);
             roundWinner = round.play(this.rounds.size());
         } while(!isBattleWinner(roundWinner));

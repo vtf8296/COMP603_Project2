@@ -75,6 +75,7 @@ public class Database {
                     data.wins = rs.getInt("win");
                     data.loss = rs.getInt("loss");
                     data.username = rs.getString("username");
+                    data.rounds.add(new Round(new Player(username)));
                 } else {
                     data.loginFlag = false;
                 }
@@ -93,6 +94,7 @@ public class Database {
                 data.wins = 0;
                 data.loss = 0;
                 data.username = username;
+                data.rounds.add(new Round(new Player(username)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);

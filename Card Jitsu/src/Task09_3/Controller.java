@@ -29,8 +29,18 @@ public class Controller implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand(); // Obtain the text displayed on the component.
-        if (actionCommand.equals(this.view.cardButton1.getActionCommand())) {
-            this.model.lol();
+        if (actionCommand.equals(this.view.helpButton.getActionCommand())) {
+            this.model.checkName("a", "a");
+        } else if (actionCommand.equals(this.view.cardButton1.getActionCommand())) {
+            this.model.playRound(0);
+        } else if (actionCommand.equals(this.view.cardButton2.getActionCommand())) {
+            this.model.playRound(1);
+        } else if (actionCommand.equals(this.view.cardButton3.getActionCommand())) {
+            this.model.playRound(2);
+        } else if (actionCommand.equals(this.view.cardButton4.getActionCommand())) {
+            this.model.playRound(3);
+        } else if (actionCommand.equals(this.view.cardButton5.getActionCommand())) {
+            this.model.playRound(4);
         }
 //        if (buttonText.equals(this.view.loginButton.getText())) {
 //            System.out.println("Login button");
