@@ -96,4 +96,9 @@ public class Model extends Observable {
         this.setChanged();
         this.notifyObservers(this.data);
     }
+    
+    public void lol() {
+        this.setChanged(); 
+        this.notifyObservers(this.data);
+    }
 }

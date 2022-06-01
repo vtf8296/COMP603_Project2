@@ -1,27 +1,28 @@
-package Task09_3;
+package deleteme;
 
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
 import javax.swing.JFrame;
 
-public class View extends JFrame implements Observer {
-
+public class TestView extends JFrame {
+    
     // BATTLE
     private javax.swing.JPanel batlePanel;
-    public javax.swing.JButton cardButton1;
-    public javax.swing.JButton cardButton2;
-    public javax.swing.JButton cardButton3;
-    public javax.swing.JButton cardButton4;
-    public javax.swing.JButton cardButton5;
+    private javax.swing.JButton card1Button;
+    private javax.swing.JLabel card1Label;
+    private javax.swing.JButton card2Button;
+    private javax.swing.JLabel card2Label;
+    private javax.swing.JButton card3Button;
+    private javax.swing.JLabel card3Label;
+    private javax.swing.JButton card4Button;
+    private javax.swing.JLabel card4Label;
+    private javax.swing.JButton card5Button;
+    private javax.swing.JLabel card5Label;
     private javax.swing.JPanel handPanel;
-    public javax.swing.JButton helpButton;
+    private javax.swing.JButton helpButton;
     private javax.swing.JLabel playerFireWinningCardsLabel;
     private javax.swing.JLabel playerIceWinningCardsLabel;
     private javax.swing.JLabel playerWaterWinningCardsLabel;
     private javax.swing.JPanel playerWinningCardsPanel;
-    public javax.swing.JButton quitButton;
+    private javax.swing.JButton quitButton;
     private javax.swing.JLabel robotFireWinningCardsLabel;
     private javax.swing.JLabel robotIceWinningCardsLabel;
     private javax.swing.JLabel robotWaterWinningCardsLabel;
@@ -29,7 +30,7 @@ public class View extends JFrame implements Observer {
     private javax.swing.JLabel roundMessageLabel;
     private javax.swing.JLabel roundNumberLabel;
     
-    public View() {        
+    public TestView() {        
         initComponents();
         setVisible(true);
     }
@@ -48,11 +49,16 @@ public class View extends JFrame implements Observer {
         robotFireWinningCardsLabel = new javax.swing.JLabel();
         robotWaterWinningCardsLabel = new javax.swing.JLabel();
         handPanel = new javax.swing.JPanel();
-        cardButton1 = new javax.swing.JButton();
-        cardButton2 = new javax.swing.JButton();
-        cardButton3 = new javax.swing.JButton();
-        cardButton4 = new javax.swing.JButton();
-        cardButton5 = new javax.swing.JButton();
+        card1Button = new javax.swing.JButton();
+        card2Button = new javax.swing.JButton();
+        card3Button = new javax.swing.JButton();
+        card4Button = new javax.swing.JButton();
+        card5Button = new javax.swing.JButton();
+        card1Label = new javax.swing.JLabel();
+        card2Label = new javax.swing.JLabel();
+        card3Label = new javax.swing.JLabel();
+        card4Label = new javax.swing.JLabel();
+        card5Label = new javax.swing.JLabel();
         helpButton = new javax.swing.JButton();
         quitButton = new javax.swing.JButton();
 
@@ -132,63 +138,83 @@ public class View extends JFrame implements Observer {
 
         handPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Hand of Cards"));
 
-        cardButton1.setText("<html>\n<h4>12</h4>\nMagenta\n<br/>\nWater\n</html>");
-        cardButton1.setActionCommand("Card 1");
-        cardButton1.setMaximumSize(new java.awt.Dimension(75, 125));
-        cardButton1.setMinimumSize(new java.awt.Dimension(75, 125));
-        cardButton1.setPreferredSize(new java.awt.Dimension(75, 125));
+        card1Button.setText("Card 1");
 
-        cardButton2.setText("<html>\n<h4>12</h4>\nMagenta\n<br/>\nWater\n</html>");
-        cardButton2.setActionCommand("Card 2");
-        cardButton2.setMaximumSize(new java.awt.Dimension(75, 125));
-        cardButton2.setMinimumSize(new java.awt.Dimension(75, 125));
-        cardButton2.setPreferredSize(new java.awt.Dimension(75, 125));
+        card2Button.setText("Card 2");
 
-        cardButton3.setText("<html>\n<h4>12</h4>\nMagenta\n<br/>\nWater\n</html>");
-        cardButton3.setActionCommand("Card 3");
-        cardButton3.setMaximumSize(new java.awt.Dimension(75, 125));
-        cardButton3.setMinimumSize(new java.awt.Dimension(75, 125));
-        cardButton3.setPreferredSize(new java.awt.Dimension(75, 125));
+        card3Button.setText("Card 3");
 
-        cardButton4.setText("<html>\n<h4>12</h4>\nMagenta\n<br/>\nWater\n</html>");
-        cardButton4.setActionCommand("Card 4");
-        cardButton4.setMaximumSize(new java.awt.Dimension(75, 125));
-        cardButton4.setMinimumSize(new java.awt.Dimension(75, 125));
-        cardButton4.setPreferredSize(new java.awt.Dimension(75, 125));
+        card4Button.setText("Card 4");
 
-        cardButton5.setText("<html>\n<h4>12</h4>\nMagenta\n<br/>\nWater\n</html>");
-        cardButton5.setActionCommand("Card 5");
-        cardButton5.setMaximumSize(new java.awt.Dimension(75, 125));
-        cardButton5.setMinimumSize(new java.awt.Dimension(75, 125));
-        cardButton5.setPreferredSize(new java.awt.Dimension(75, 125));
+        card5Button.setText("Card 5");
+
+        card1Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        card1Label.setText("<html>\n<h4>12</h4>\nMagenta\n<br/>\nWater\n</html>");
+        card1Label.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        card2Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        card2Label.setText("<html>\n<h4>12</h4>\nMagenta\n<br/>\nWater\n</html>");
+        card2Label.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        card3Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        card3Label.setText("<html>\n<h4>12</h4>\nMagenta\n<br/>\nWater\n</html>");
+        card3Label.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        card4Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        card4Label.setText("<html>\n<h4>12</h4>\nMagenta\n<br/>\nWater\n</html>");
+        card4Label.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        card5Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        card5Label.setText("<html>\n<h4>12</h4>\nMagenta\n<br/>\nWater\n</html>");
+        card5Label.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout handPanelLayout = new javax.swing.GroupLayout(handPanel);
         handPanel.setLayout(handPanelLayout);
         handPanelLayout.setHorizontalGroup(
             handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(handPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cardButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(cardButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(cardButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(cardButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(cardButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(36, 36, 36)
+                .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(card1Label)
+                    .addComponent(card1Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(handPanelLayout.createSequentialGroup()
+                        .addComponent(card2Button)
+                        .addGap(18, 18, 18)
+                        .addComponent(card3Button))
+                    .addGroup(handPanelLayout.createSequentialGroup()
+                        .addComponent(card2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(card3Label)))
+                .addGap(18, 18, 18)
+                .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(card4Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(card4Label))
+                .addGap(18, 18, 18)
+                .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(card5Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(card5Label))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         handPanelLayout.setVerticalGroup(
             handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(handPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, handPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(card1Label, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                    .addComponent(card2Label)
+                    .addComponent(card3Label, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(card4Label)
+                    .addComponent(card5Label, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(handPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cardButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cardButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cardButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cardButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cardButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 30, Short.MAX_VALUE))
+                    .addComponent(card1Button)
+                    .addComponent(card2Button)
+                    .addComponent(card3Button)
+                    .addComponent(card4Button)
+                    .addComponent(card5Button))
+                .addContainerGap())
         );
 
         helpButton.setText("Help");
@@ -203,7 +229,7 @@ public class View extends JFrame implements Observer {
                 .addContainerGap()
                 .addGroup(batlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(roundNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundMessageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                    .addComponent(roundMessageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(playerWinningCardsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(robotWinningCardsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(handPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -230,7 +256,7 @@ public class View extends JFrame implements Observer {
                 .addGroup(batlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(helpButton)
                     .addComponent(quitButton))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -245,27 +271,10 @@ public class View extends JFrame implements Observer {
         );
 
         pack();
-    }// </editor-fold>                        
-
-    
-    public void addActionListener(ActionListener listener) {
-        this.cardButton1.addActionListener(listener);
-        this.cardButton2.addActionListener(listener);
-        this.cardButton3.addActionListener(listener);
-        this.cardButton4.addActionListener(listener);
-        this.cardButton5.addActionListener(listener);
-        this.helpButton.addActionListener(listener);
-        this.quitButton.addActionListener(listener);
     }
     
-    @Override
-    public void update(Observable o, Object arg) {
-        Data data = (Data) arg;
-        if(this.cardButton1.getForeground().equals(Color.RED)) {
-            this.cardButton1.setForeground(Color.BLUE);
-        } else {
-            this.cardButton1.setForeground(Color.RED);
-        }
+    public static void main(String[] args) {
+        TestView view = new TestView();
     }
 
 }
