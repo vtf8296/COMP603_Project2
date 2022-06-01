@@ -8,16 +8,18 @@ package Task09_3;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Data {
     boolean loginFlag = false; // Check if the user successfully login the system.
+    boolean battleStartedFlag = false;
+    boolean battleWonFlag = false;
     boolean quitFlag = false; // Check if the user quit the system.
-    int currentScore = 0; // Store user's cumulative scores.
-    int num1 = 0; // The first and second numbers of the question.
-    int num2 = 0;
     
     String username = "";
     int wins = 0;
-    int loss = 0;
+    int losses = 0;
+    Player player = null;
+    Player robot = new Player("Robot");
     List<Round> rounds = new ArrayList<>();
+    String winningTitle = "";
+    String winningSet = "";
 }

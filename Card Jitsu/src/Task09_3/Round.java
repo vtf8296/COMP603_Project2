@@ -6,34 +6,20 @@
 package Task09_3;
 
 import java.util.Optional;
-import java.util.Random;
 
 /**
  *
  * @author abdulh
  */
 public class Round {
-    private Player player;
-    private Player robot;
-    private Optional<Player> winner;
-    private Card playerSelectedCard;
-    private Card robotSelectedCard;
+    private final Optional<Player> winner;
+    private final Card playerSelectedCard;
+    private final Card robotSelectedCard;
     
-    public Round(Player player) {
-        this.player = player;
-        this.robot = new Player("Robot");
-    }
-    
-    public Player getPlayer() {
-        return this.player;
-    }
-    
-    public Player getRobot() {
-        return this.robot;
-    }
-    
-    public Optional<Player> getWinner() {
-        return this.winner;
+    public Round(final Card playerSelectedCard, final Card robotSelectedCard, final Optional<Player> winner) {
+        this.playerSelectedCard = playerSelectedCard;
+        this.robotSelectedCard = robotSelectedCard;
+        this.winner = winner;
     }
     
     public Card getPlayerSelectedCard() {
@@ -44,28 +30,12 @@ public class Round {
         return this.robotSelectedCard;
     }
     
-    // method starts the round.
-    public Optional<Player> play(int index) {
-        this.playerSelectedCard = this.player.playCard(index);
-        
-        //robot plays card
-        Random rand = new Random();
-        this.robotSelectedCard = this.robot.playCard(rand.nextInt(Player.HAND_SIZE));
-        
-        // Pick up cards
-        this.player.pickupCard(Card.getRandomCard());
-        this.robot.pickupCard(Card.getRandomCard());
-        
-        // Determine winner
-        this.winner = Optional.empty();
-        if (this.playerSelectedCard.compareTo(this.robotSelectedCard) > 0) {
-            this.player.addWinningCard(this.playerSelectedCard);
-            this.winner = Optional.of(this.player);
-        } else if (this.playerSelectedCard.compareTo(this.robotSelectedCard) < 0) {
-            this.robot.addWinningCard(this.robotSelectedCard);
-            this.winner = Optional.of(this.robot);
-        }
-        
+    public Optional<Player> getWinner() {
         return this.winner;
     }
+    
+    public boolean isTied() {
+        return !this.winner.isPresent();
+    }
+    
 }

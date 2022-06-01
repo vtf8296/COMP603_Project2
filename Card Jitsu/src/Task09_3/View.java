@@ -1,6 +1,5 @@
 package Task09_3;
 
-import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +9,17 @@ import java.util.stream.Collectors;
 import javax.swing.JFrame;
 
 public class View extends JFrame implements Observer {
+    
+    private ActionListener actionListener;
+    
+    // LOGIN
+    public javax.swing.JButton loginButton;
+    private javax.swing.JLabel loginLabel;
+    private javax.swing.JPanel loginPanel;
+    public javax.swing.JPasswordField loginPasswordField;
+    private javax.swing.JLabel loginPasswordLabel;
+    public javax.swing.JTextField loginUsernameField;
+    private javax.swing.JLabel loginUsernameLabel;
 
     // BATTLE
     private List<javax.swing.JButton> cardButtons;
@@ -34,12 +44,97 @@ public class View extends JFrame implements Observer {
     private javax.swing.JLabel roundMessageLabel;
     private javax.swing.JLabel roundNumberLabel;
     
-    public View() {        
-        initComponents();
-        setVisible(true);
+    public View() {
+        // Empty constructor, waiting for actionListener to be added
     }
     
-    private void initComponents() {
+    private void initLoginComponents() {
+
+        loginPanel = new javax.swing.JPanel();
+        loginButton = new javax.swing.JButton();
+        loginPasswordField = new javax.swing.JPasswordField();
+        loginUsernameField = new javax.swing.JTextField();
+        loginLabel = new javax.swing.JLabel();
+        loginUsernameLabel = new javax.swing.JLabel();
+        loginPasswordLabel = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Card Jitsu");
+        setMinimumSize(new java.awt.Dimension(550, 550));
+        setResizable(false);
+
+        loginButton.setText("Login");
+
+        loginPasswordField.setToolTipText("Password");
+
+        loginUsernameField.setToolTipText("Username");
+
+        loginLabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        loginLabel.setText("Card Jitsu");
+
+        loginUsernameLabel.setText("Username:");
+
+        loginPasswordLabel.setText("Password:");
+
+        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
+        loginPanel.setLayout(loginPanelLayout);
+        loginPanelLayout.setHorizontalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginPanelLayout.createSequentialGroup()
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(loginLabel))
+                    .addGroup(loginPanelLayout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(loginButton)))
+                .addContainerGap(161, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginUsernameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(loginPasswordLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(loginPasswordField)
+                    .addComponent(loginUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(169, 169, 169))
+        );
+        loginPanelLayout.setVerticalGroup(
+            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginPanelLayout.createSequentialGroup()
+                .addGap(199, 199, 199)
+                .addComponent(loginLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginUsernameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginPasswordLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loginButton)
+                .addContainerGap(131, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(loginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        pack();
+        
+        this.loginButton.addActionListener(this.actionListener);
+    }
+    
+    private void initBattleComponents() {
 
         batlePanel = new javax.swing.JPanel();
         roundMessageLabel = new javax.swing.JLabel();
@@ -69,7 +164,6 @@ public class View extends JFrame implements Observer {
 
         roundMessageLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         roundMessageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        roundMessageLabel.setText("Player's magenta water [12] beat Robot's magenta water [12]");
 
         roundNumberLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         roundNumberLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -252,13 +346,21 @@ public class View extends JFrame implements Observer {
         pack();
         
         this.cardButtons = Arrays.asList(this.cardButton1, this.cardButton2, this.cardButton3, this.cardButton4, this.cardButton5);
-    }// </editor-fold>                        
-
-    private void updateBattleView(List<Round> rounds) {
-        Round round = rounds.get(rounds.size() - 1);
+        this.cardButton1.addActionListener(this.actionListener);
+        this.cardButton2.addActionListener(this.actionListener);
+        this.cardButton3.addActionListener(this.actionListener);
+        this.cardButton4.addActionListener(this.actionListener);
+        this.cardButton5.addActionListener(this.actionListener);
+        this.helpButton.addActionListener(this.actionListener);
+        this.quitButton.addActionListener(this.actionListener);
+    }
+    
+    private void updateBattleView(final Player player, final Player robot, final List<Round> rounds) {
+        this.roundNumberLabel.setText("Round " + (rounds.size() + 1));
+        
         for(int i = 0; i < Player.HAND_SIZE; i++) {
             javax.swing.JButton cardButton = this.cardButtons.get(i);
-            Card card = round.getPlayer().getHand().get(i);
+            Card card = player.getHand().get(i);
             cardButton.setBackground(card.getColour().value);
             cardButton.setText("<html>" +
                     "<h4>" + card.getLevel() + "</h4>" +
@@ -268,39 +370,60 @@ public class View extends JFrame implements Observer {
                     "</html>");
         }
         
-        if(round.getWinner().isPresent()) {
-            if(round.getWinner().get() == round.getPlayer()) {
-                this.roundMessageLabel.setText("Player's " + round.getPlayerSelectedCard() + " beat Robot's " + round.getRobotSelectedCard());
+        if(!rounds.isEmpty()) {
+            Round round = rounds.get(rounds.size() - 1);
+            if(round.isTied()) {
+                this.roundMessageLabel.setText(player.getName() + "'s " + round.getPlayerSelectedCard() + " tied with Robot's " + round.getRobotSelectedCard());
             } else {
-                this.roundMessageLabel.setText("Robot's " + round.getRobotSelectedCard() + " beat Player's " + round.getPlayerSelectedCard());
+                if(round.getWinner().get() == player) {
+                    this.roundMessageLabel.setText(player.getName() + "'s " + round.getPlayerSelectedCard() + " beat Robot's " + round.getRobotSelectedCard());
+                } else {
+                    this.roundMessageLabel.setText("Robot's " + round.getRobotSelectedCard() + " beat " + player.getName() + "'s " + round.getPlayerSelectedCard());
+                }
             }
-        } else {
-            this.roundMessageLabel.setText("Player's " + round.getPlayerSelectedCard() + " tied with Robot's " + round.getRobotSelectedCard());
         }
-        this.roundNumberLabel.setText("Round " +rounds.size());
         
-        this.playerFireWinningCardsLabel.setText("FIRE: " + round.getPlayer().getWinningCards().stream().filter(card -> card.getElement().equals(Element.FIRE)).collect(Collectors.toList()));
-        this.playerWaterWinningCardsLabel.setText("WATER: " + round.getPlayer().getWinningCards().stream().filter(card -> card.getElement().equals(Element.WATER)).collect(Collectors.toList()));
-        this.playerIceWinningCardsLabel.setText("ICE: " + round.getPlayer().getWinningCards().stream().filter(card -> card.getElement().equals(Element.ICE)).collect(Collectors.toList()));
-        this.robotFireWinningCardsLabel.setText("FIRE: " + round.getRobot().getWinningCards().stream().filter(card -> card.getElement().equals(Element.FIRE)).collect(Collectors.toList()));
-        this.robotWaterWinningCardsLabel.setText("WATER: " + round.getRobot().getWinningCards().stream().filter(card -> card.getElement().equals(Element.WATER)).collect(Collectors.toList()));
-        this.robotIceWinningCardsLabel.setText("ICE: " + round.getRobot().getWinningCards().stream().filter(card -> card.getElement().equals(Element.ICE)).collect(Collectors.toList()));
+        this.playerFireWinningCardsLabel.setText("FIRE: " + player.getWinningCards().stream().filter(card -> card.getElement().equals(Element.FIRE)).collect(Collectors.toList()));
+        this.playerWaterWinningCardsLabel.setText("WATER: " + player.getWinningCards().stream().filter(card -> card.getElement().equals(Element.WATER)).collect(Collectors.toList()));
+        this.playerIceWinningCardsLabel.setText("ICE: " + player.getWinningCards().stream().filter(card -> card.getElement().equals(Element.ICE)).collect(Collectors.toList()));
+        this.robotFireWinningCardsLabel.setText("FIRE: " + robot.getWinningCards().stream().filter(card -> card.getElement().equals(Element.FIRE)).collect(Collectors.toList()));
+        this.robotWaterWinningCardsLabel.setText("WATER: " + robot.getWinningCards().stream().filter(card -> card.getElement().equals(Element.WATER)).collect(Collectors.toList()));
+        this.robotIceWinningCardsLabel.setText("ICE: " + robot.getWinningCards().stream().filter(card -> card.getElement().equals(Element.ICE)).collect(Collectors.toList()));
     }
     
-    public void addActionListener(ActionListener listener) {
-        this.cardButton1.addActionListener(listener);
-        this.cardButton2.addActionListener(listener);
-        this.cardButton3.addActionListener(listener);
-        this.cardButton4.addActionListener(listener);
-        this.cardButton5.addActionListener(listener);
-        this.helpButton.addActionListener(listener);
-        this.quitButton.addActionListener(listener);
+    public void addActionListener(ActionListener actionListener) {
+        this.actionListener = actionListener;
+        
+        initLoginComponents();
+        setVisible(true);
     }
     
     @Override
     public void update(Observable o, Object arg) {
         Data data = (Data) arg;
-        updateBattleView(data.rounds);
+        
+        if (data.quitFlag) {
+            System.exit(0);
+        } else if(data.battleWonFlag) {
+            this.updateBattleView(data.player, data.robot, data.rounds);
+            this.roundNumberLabel.setText(data.winningTitle);
+            this.roundMessageLabel.setText(data.winningSet);
+            this.cardButton1.setEnabled(false);
+            
+            for(int i = 0; i < Player.HAND_SIZE; i++) {
+                this.cardButtons.get(i).setEnabled(false);
+            }
+            
+        } else if (!data.loginFlag) {
+            this.loginUsernameField.setText("");
+            this.loginPasswordField.setText("");
+        } else if (data.loginFlag && !data.battleStartedFlag) {
+            this.getContentPane().removeAll();
+            initBattleComponents();
+            this.updateBattleView(data.player, data.robot, data.rounds);
+        } else if (data.battleStartedFlag) {
+            this.updateBattleView(data.player, data.robot, data.rounds);
+        }
     }
 
 }

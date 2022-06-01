@@ -18,47 +18,31 @@ import java.util.logging.Logger;
 public class Database {
 
     Connection conn = null;
-    String url = "jdbc:derby:CardJitsu;create=true"; // "jdbc:derby://localhost:1527/CardJitsu;create=true";  //url of the DB host
+    String url = "jdbc:derby:CardJitsu;create=true"; //url of the DB host
     String dbusername = "pdc";  //your DB username
-    String dbpassword = "pdc";   //your DB password
+    String dbpassword = "pdc";  //your DB password
 
-    /**
-     * Step 3: Create the method for initializing the connection between the
-     * program and the database.
-     *
-     * Go to Controller.java for Step 4.
-     */
     public void dbsetup() {
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
             Statement statement = conn.createStatement();
             String tableName = "UserInfo";
+            // System.out.println(statement.executeUpdate("DROP TABLE UserInfo"));
 
             if (!checkTableExisting(tableName)) {
-                statement.executeUpdate("CREATE TABLE " + tableName + " (username VARCHAR(12), password VARCHAR(12), score INT, win INT, loss INT)");
+                statement.executeUpdate("CREATE TABLE " + tableName + " (username VARCHAR(12), password VARCHAR(12), wins INT, losses INT)");
             }
-            //statement.executeUpdate("INSERT INTO " + tableName + " VALUES('Fiction',0),('Non-fiction',10),('Textbook',20)");
             statement.close();
-
         } catch (Throwable e) {
-            System.out.println("error");
-
+            System.out.println(e);
         }
     }
 
-    /**
-     * Step 7:
-     *
-     * @param username
-     * @param password
-     * @return data
-     */
     public Data checkName(String username, String password) {
         Data data = new Data(); // Initialize an instance of Data.
         try {
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT username, password, score, win, loss FROM UserInfo "
-                    + "WHERE username = '" + username + "'");
+            ResultSet rs = statement.executeQuery("SELECT username, password, wins, losses FROM UserInfo WHERE username = '" + username + "'");
             if (rs.next()) {
                 String pass = rs.getString("password");
                 System.out.println("***" + pass);
@@ -69,13 +53,12 @@ public class Database {
                  * of data. Otherwise, keep loginFlag as false.
                  */
                 if (password.compareTo(pass) == 0) {
-                    data.currentScore = rs.getInt("score");
                     data.loginFlag = true;
                     
-                    data.wins = rs.getInt("win");
-                    data.loss = rs.getInt("loss");
+                    data.wins = rs.getInt("wins");
+                    data.losses = rs.getInt("losses");
                     data.username = rs.getString("username");
-                    data.rounds.add(new Round(new Player(username)));
+                    data.player = new Player(username);
                 } else {
                     data.loginFlag = false;
                 }
@@ -87,14 +70,13 @@ public class Database {
                  */
                 System.out.println("no such user, creating new user");
                 statement.executeUpdate("INSERT INTO UserInfo "
-                        + "VALUES('" + username + "', '" + password + "', 0, 0, 0)");
-                data.currentScore = 0;
+                        + "VALUES('" + username + "', '" + password + "', 0, 0)");
                 data.loginFlag = true;
                 
                 data.wins = 0;
-                data.loss = 0;
+                data.losses = 0;
                 data.username = username;
-                data.rounds.add(new Round(new Player(username)));
+                data.player = new Player(username);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -109,8 +91,7 @@ public class Database {
             System.out.println("check existing tables.... ");
             String[] types = {"TABLE"};
             DatabaseMetaData dbmd = conn.getMetaData();
-            ResultSet rsDBMeta = dbmd.getTables(null, null, null, null);//types);
-            //Statement dropStatement=null;
+            ResultSet rsDBMeta = dbmd.getTables(null, null, null, null);
             while (rsDBMeta.next()) {
                 String tableName = rsDBMeta.getString("TABLE_NAME");
                 if (tableName.compareToIgnoreCase(newTableName) == 0) {
@@ -126,12 +107,12 @@ public class Database {
         return flag;
     }
 
-    public void quitGame(int score, String username) {
+    public void saveStats(int wins, int losses, String username) {
         Statement statement;
         try {
             statement = conn.createStatement();
-            statement.executeUpdate("UPDATE UserInfo SET score=" + score + " WHERE username='" + username + "'");
-
+            statement.executeUpdate("UPDATE UserInfo SET wins=" + wins + " WHERE username='" + username + "'");
+            statement.executeUpdate("UPDATE UserInfo SET losses=" + losses + " WHERE username='" + username + "'");
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
