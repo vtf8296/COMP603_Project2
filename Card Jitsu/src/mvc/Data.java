@@ -10,10 +10,11 @@ import java.util.List;
 
 public class Data {
     boolean loginFlag = false; // Check if the user successfully login the system.
-    boolean battleStartedFlag = false;
-    boolean battleWonFlag = false;
+    boolean battleStartedFlag = false; // Check if the battle has started.
+    boolean battleWonFlag = false; // Check if the battle has ended.
     boolean quitFlag = false; // Check if the user quit the system.
     
+    //Variables set to take reference from View and Model.
     String username = "";
     int wins = 0;
     int losses = 0;

@@ -18,7 +18,6 @@ public class Model extends Observable {
 
     public Database db;
     public Data data;
-    public int answer = 0;
     public String username; // To store the user name for later use.
     
     /**
@@ -39,21 +38,15 @@ public class Model extends Observable {
      * @param username
      * @param password 
      */
+    //Method used to check the name and password for user profile.
     public void checkName(String username, String password) {
         this.username = username;
         this.data = this.db.checkName(username, password);
-//        if (data.loginFlag) {
-//            this.newQuestion();
-//        }
-        
         this.setChanged();
         this.notifyObservers(this.data); 
     }
 
     public void quitGame() {
-        /**
-         * Update data in the database. Go to quitGame() of Database.java for a fast check.
-         */
         this.data.quitFlag = true; // Mark quitFlag as false.
         this.setChanged();
         this.notifyObservers(this.data);

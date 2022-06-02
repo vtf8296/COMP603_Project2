@@ -16,12 +16,13 @@ import java.util.logging.Logger;
 
 
 public class Database {
-
+    
     Connection conn = null;
     String url = "jdbc:derby:CardJitsuDB;create=true"; //url of the DB host
     String dbusername = "pdc";  //your DB username
     String dbpassword = "pdc";  //your DB password
-
+    
+    //Setting up the Database.
     public void dbsetup() {
         try {
             conn = DriverManager.getConnection(url, dbusername, dbpassword);
@@ -37,7 +38,9 @@ public class Database {
             System.out.println(e);
         }
     }
-
+    
+    //Method to check the username and password for login.
+    //Also to set scores set to user profile.
     public Data checkName(String username, String password) {
         Data data = new Data(); // Initialize an instance of Data.
         try {
@@ -106,7 +109,7 @@ public class Database {
         }
         return flag;
     }
-
+    //saves stats of a user to their user profile.
     public void saveStats(int wins, int losses, String username) {
         Statement statement;
         try {
