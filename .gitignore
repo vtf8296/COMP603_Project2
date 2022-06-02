@@ -1,2 +1,5 @@
 build/
 /Card Jitsu/nbproject/private/
+/Card Jitsu/dist/
+/Card Jitsu/CardJitsuDB/
+/Card Jitsu/derby.log

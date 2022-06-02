@@ -353,6 +353,7 @@ public class View extends JFrame implements Observer {
         this.cardButton5.addActionListener(this.actionListener);
         this.helpButton.addActionListener(this.actionListener);
         this.quitButton.addActionListener(this.actionListener);
+        this.helpButton.setVisible(false);
     }
     
     private void updateBattleView(final Player player, final Player robot, final List<Round> rounds) {

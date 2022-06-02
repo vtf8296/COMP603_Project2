@@ -2,7 +2,7 @@
 package mvc;
 
 
-public class QuizMain {
+public class CardJitsu {
     /**
      * Preparation:
      * Create Controller, Model, View, Database and Data class first.

@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class Database {
 
     Connection conn = null;
-    String url = "jdbc:derby:CardJitsu;create=true"; //url of the DB host
+    String url = "jdbc:derby:CardJitsuDB;create=true"; //url of the DB host
     String dbusername = "pdc";  //your DB username
     String dbpassword = "pdc";  //your DB password
 
