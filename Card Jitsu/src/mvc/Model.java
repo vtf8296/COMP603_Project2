@@ -1,5 +1,5 @@
 
-package Task09_3;
+package mvc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,36 +48,6 @@ public class Model extends Observable {
         
         this.setChanged();
         this.notifyObservers(this.data); 
-    }
-    
-    public void newQuestion() {
-//        this.data.num1 = getNumber();
-//        this.data.num2 = getNumber();
-//        this.answer = this.data.num1 + this.data.num2; // Store the correct answer.
-    }
-
-    public int getNumber() {
-        Random generator = new Random();
-        int i = generator.nextInt(100);
-        return i;
-    }
-    
-    /**
-     * Step 9:
- Define checkAnswer() and saveStats()
- 
- After that, back to update() of View to complete remaining part.
-     * @param answer 
-     */
-    public void checkAnswer(String answer) {
-        if (answer.equals(this.answer + "")) {
-//            data.currentScore += 10;
-        } else {
-//            data.currentScore -= 10;
-        }
-        this.newQuestion(); // Generate a new question for user.
-        this.setChanged(); 
-        this.notifyObservers(this.data);
     }
 
     public void quitGame() {
