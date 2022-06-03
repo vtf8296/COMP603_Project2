@@ -25,6 +25,7 @@ public enum Colour {
         this.value = value;
     }
     
+    //Get random colour for cards.
     public static Colour getRandomColour() {
         Random random = new Random();
         return values()[random.nextInt(values().length)];
